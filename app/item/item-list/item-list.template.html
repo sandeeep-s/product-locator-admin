@@ -1,0 +1,16 @@
+<table class="w3-table w3-bordered w3-striped">
+	<tr>
+		<th>Item Name</th>
+		<th>Item Code</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="item in $ctrl.items">
+		<td>{{item.name}}</td>
+		<td>{{item.code}}</td>
+		<td><button ng-click="deleteItem(item)">Delete</button></td>
+		<td><button ng-click="openEditForm(item)">Edit</button></td>
+	</tr>
+</table>
+<br>
+<button ng-click="openAddForm()" class="w3-btn w3-green w3-ripple">Create New Item</button>
