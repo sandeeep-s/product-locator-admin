@@ -1,0 +1,19 @@
+<form novalidate>
+    <br>
+    <label>Name:</label>
+    <span ng-switch="$ctrl.editMode">
+    <input ng-switch-when="true" type="text" placeholder="Item Name" ng-model="$ctrl.item.name">
+    <span ng-switch-default>{{$ctrl.item.name}}</span>
+    </span>
+    <br>
+    <label>Code:</label>
+    <span ng-switch="$ctrl.editMode">
+    <input ng-switch-when="true" type="text" placeholder="Item Name" ng-model="$ctrl.item.code">
+    <span ng-switch-default>{{$ctrl.item.code}}</span>
+    </span>
+    <br>
+    <span ng-if="$ctrl.editMode">
+	   <button ng-if="$ctrl.mode == 'create'" ng-click="$ctrl.createItem($ctrl.resourceURL)">Save</button>
+     <button ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.updateItem($ctrl.resourceURL)">Save</button>
+  </span>
+</form>
