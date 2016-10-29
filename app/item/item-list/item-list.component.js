@@ -33,7 +33,7 @@ component('itemList', {
 
             $http.delete(itemUrl);
 
-            $location.path("/");
+            $location.path("/items");
         }
 
         var getURLPath = function(url) {

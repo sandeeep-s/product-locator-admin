@@ -35,7 +35,7 @@ angular.module('item')
 
                 $http.post(resourceURL, dataObject);
 
-                $location.path("/");
+                $location.path("/items");
             };
 
             this.updateItem = function(resourceURL) {
@@ -47,7 +47,11 @@ angular.module('item')
 
                 $http.put(resourceURL, dataObject);
 
-                $location.path("/");
+                $location.path("/items");
+            };
+
+            this.cancel = function() {
+                $location.path("/items");
             };
 
         }],

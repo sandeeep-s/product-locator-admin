@@ -2,6 +2,8 @@ angular.module('productLocatorAdmin')
     .config(function($routeProvider, $locationProvider) {
 
         $routeProvider.when('/', {
+            templateUrl: 'home.html',
+        }).when('/items', {
             template: '<item-list root="$resolve.root"></item-list>',
             resolve: {
                 root: function(hrRoot) {
