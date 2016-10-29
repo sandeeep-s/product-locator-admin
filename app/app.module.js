@@ -3,10 +3,10 @@
 // Declare app level module which depends on views, and components
 angular.module('productLocatorAdmin', [
   'ngRoute',
-  'item',
   'ngResource',
   'hrCore',
-  'hrHal'
+  'hrHal',
+  'item'
 ]);
 /*.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
