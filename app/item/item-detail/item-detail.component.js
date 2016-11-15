@@ -1,28 +1,31 @@
 angular.module('item')
     .component('itemDetail', {
+        bindings: {
+            mode: '@',
+            onClose: '&'
+        },
         templateUrl: 'item/item-detail/item-detail.template.html',
         controller: ['$http', '$location', '$routeParams', function itemDetailController($http, $location, $routeParams) {
             var ctrl = this;
-            this.type = this.root.$link('items');
 
-            //    alert(this.mode);
+            var itemsUrl = "http://localhost:8090/items";
 
             ctrl.editMode = true;
             if ("edit" == this.mode) {
-                var itemUrl = this.type.resolvedUrl() + '/' + $routeParams.itemId;
+                var itemUrl = itemsUrl + '/' + $routeParams.itemId;
                 ctrl.resourceURL = itemUrl;
                 $http.get(itemUrl).then(function(response) {
                     ctrl.item = response.data;
                 });
             } else if ("view" == this.mode) {
                 ctrl.editMode = false;
-                var itemUrl = this.type.resolvedUrl() + '/' + $routeParams.itemId;
+                var itemUrl = itemsUrl + '/' + $routeParams.itemId;
                 ctrl.resourceURL = itemUrl;
                 $http.get(itemUrl).then(function(response) {
                     ctrl.item = response.data;
                 });
             } else if ("create" == this.mode) {
-                ctrl.resourceURL = this.type.resolvedUrl();
+                ctrl.resourceURL = itemsUrl;
                 this.item = {};
             }
 
@@ -35,7 +38,7 @@ angular.module('item')
 
                 $http.post(resourceURL, dataObject);
 
-                $location.path("/items");
+                ctrl.onClose();
             };
 
             this.updateItem = function(resourceURL) {
@@ -54,9 +57,5 @@ angular.module('item')
                 $location.path("/items");
             };
 
-        }],
-        bindings: {
-            root: '<',
-            mode: '@'
-        }
+        }]
     });

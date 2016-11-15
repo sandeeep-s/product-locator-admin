@@ -4,8 +4,12 @@ component('itemList', {
     templateUrl: 'item/item-list/item-list.template.html',
     controller: ['$http', '$location', function itemListController($http, $location) {
         var ctrl = this;
-        this.type = this.root.$link('items');
-        this.items = this.type.follow().$followAll('items');
+        var itemsURL = "http://localhost:8090/items";
+
+        $http.get(itemsURL).then(function(response){
+            var itemsResponse = response.data;
+            ctrl.items = itemsResponse._embedded.items;
+        });
 
         this.openAddForm = function() {
             $location.path("/items/create-item");
@@ -36,14 +40,23 @@ component('itemList', {
             $location.path("/items");
         }
 
+        this.createItem = function(item) {
+
+            var dataObject = {
+                name: item.name,
+                code: item.code
+            };
+
+            $http.post(itemsURL, dataObject);
+
+            $location.path("/items");
+        };
+
         var getURLPath = function(url) {
             var el = document.createElement('a');
             el.href = url;
             return el.pathname;
         }
 
-    }],
-    bindings: {
-        root: '<'
-    }
+    }]
 });
