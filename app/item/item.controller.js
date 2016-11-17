@@ -1,5 +1,5 @@
-angular.module('productLocatorAdmin')
-    .controller('appController', ['$scope', '$location', '$http', function($scope, $location, $http) {
+angular.module('item')
+    .controller('itemController', ['$scope', '$location', '$http', function($scope, $location, $http) {
 
         $scope.closeItemDetail = function() {
             $location.path("/items");
