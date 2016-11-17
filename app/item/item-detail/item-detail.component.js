@@ -1,61 +1,41 @@
 angular.module('item')
     .component('itemDetail', {
         bindings: {
+            item: '<',
             mode: '@',
-            onClose: '&'
+            onClose: '&',
+            onCreate: '&',
+            onUpdate: '&'
         },
         templateUrl: 'item/item-detail/item-detail.template.html',
-        controller: ['$http', '$location', '$routeParams', function itemDetailController($http, $location, $routeParams) {
+        controller: function itemDetailController() {
             var ctrl = this;
 
-            var itemsUrl = "http://localhost:8090/items";
-
-            ctrl.editMode = true;
-            if ("edit" == this.mode) {
-                var itemUrl = itemsUrl + '/' + $routeParams.itemId;
-                ctrl.resourceURL = itemUrl;
-                $http.get(itemUrl).then(function(response) {
-                    ctrl.item = response.data;
-                });
-            } else if ("view" == this.mode) {
+            if ("view" == this.mode) {
                 ctrl.editMode = false;
-                var itemUrl = itemsUrl + '/' + $routeParams.itemId;
-                ctrl.resourceURL = itemUrl;
-                $http.get(itemUrl).then(function(response) {
-                    ctrl.item = response.data;
-                });
-            } else if ("create" == this.mode) {
-                ctrl.resourceURL = itemsUrl;
-                this.item = {};
+            } else {
+                ctrl.editMode = true;
             }
 
-            this.createItem = function(resourceURL) {
+            this.createItem = function() {
 
-                var dataObject = {
-                    name: ctrl.item.name,
-                    code: ctrl.item.code
-                };
+                ctrl.onCreate({
+                    item: ctrl.item
+                });
 
-                $http.post(resourceURL, dataObject);
+            };
 
+            this.updateItem = function() {
+
+                ctrl.onUpdate({
+                    item: ctrl.item
+                });
+
+            }
+
+            this.cancel = function() {
                 ctrl.onClose();
             };
 
-            this.updateItem = function(resourceURL) {
-
-                var dataObject = {
-                    name: ctrl.item.name,
-                    code: ctrl.item.code
-                };
-
-                $http.put(resourceURL, dataObject);
-
-                $location.path("/items");
-            };
-
-            this.cancel = function() {
-                $location.path("/items");
-            };
-
-        }]
+        }
     });

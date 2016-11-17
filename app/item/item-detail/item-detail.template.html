@@ -13,8 +13,8 @@
     </span>
     <br>
     <span ng-if="$ctrl.editMode">
-	   <button ng-if="$ctrl.mode == 'create'" ng-click="$ctrl.createItem($ctrl.resourceURL)">Save</button>
-     <button ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.updateItem($ctrl.resourceURL)">Save</button>
+	   <button ng-if="$ctrl.mode == 'create'" ng-click="$ctrl.createItem()">Save</button>
+     <button ng-if="$ctrl.mode == 'edit'" ng-click="$ctrl.updateItem()">Save</button>
     </span>
     <button ng-click="$ctrl.cancel()">Cancel</button>
 </form>
