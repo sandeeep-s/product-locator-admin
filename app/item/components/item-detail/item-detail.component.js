@@ -7,7 +7,7 @@ angular.module('item')
             onCreate: '&',
             onUpdate: '&'
         },
-        templateUrl: 'item/item-detail/item-detail.template.html',
+        templateUrl: 'item/components/item-detail/item-detail.template.html',
         controller: function itemDetailController() {
             var ctrl = this;
 

@@ -2,16 +2,16 @@ angular.module('item')
     .config(function($routeProvider, $locationProvider) {
 
         $routeProvider.when('/items', {
-            template: '<div ng-controller="itemController"><item-list items="$resolve.items" on-delete-item="deleteItem(item)" on-open-add-form="openAddForm()" on-open-edit-form="openEditForm(item)" on-view-item="viewItem(item)"></item-list></div>',
+            templateUrl: 'item/route/item-list.route.template.html',
             resolve: {
                 items: ['itemService', function(itemService) {
                     return itemService.fetchItems();
                 }]
             }
         }).when('/items/create-item', {
-            template: '<div ng-controller="itemController"><item-detail item="{}" mode="create" on-close="closeItemDetail()" on-create="createItem(item, resourceURL)"></item-detail></div>',
+            templateUrl: 'item/route/item-detail-create.route.template.html',
         }).when('/items/:itemId/edit-item', {
-            template: '<div ng-controller="itemController"><item-detail item="$resolve.item" mode="edit" on-close="closeItemDetail()" on-update="updateItem(item, resourceURL)"></item-detail></div>',
+            templateUrl: 'item/route/item-detail-edit.route.template.html',
             resolve: {
                 item: ['$route', 'itemService', function($route, itemService) {
                     var itemId = $route.current.params.itemId
@@ -19,7 +19,7 @@ angular.module('item')
                 }]
             }
         }).when('/items/:itemId/view-item', {
-            template: '<div ng-controller="itemController"><item-detail item="$resolve.item" mode="view" on-close="closeItemDetail()"></item-detail></div>',
+            templateUrl: 'item/route/item-detail-view.route.template.html',
             resolve: {
                 item: ['$route', 'itemService', function($route, itemService) {
                     var itemId = $route.current.params.itemId

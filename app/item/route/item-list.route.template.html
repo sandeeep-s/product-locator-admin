@@ -1,0 +1,5 @@
+<div ng-controller="itemController">
+    <item-list items="$resolve.items" on-delete-item="deleteItem(item)" on-open-add-form="openAddForm()" on-open-edit-form="openEditForm(item)"
+        on-view-item="viewItem(item)">
+    </item-list>
+</div>

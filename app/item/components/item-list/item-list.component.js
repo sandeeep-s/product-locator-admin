@@ -8,7 +8,7 @@ component('itemList', {
         onOpenEditForm: '&',
         onViewItem: '&'
     },
-    templateUrl: 'item/item-list/item-list.template.html',
+    templateUrl: 'item/components/item-list/item-list.template.html',
     controller: function itemListController() {
         var ctrl = this;
 
