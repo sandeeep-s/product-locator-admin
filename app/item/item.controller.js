@@ -9,6 +9,8 @@ angular.module('item')
             var itemCreationPromise = itemService.createItem(item);
             itemCreationPromise.then(function(result){
               $location.path("/items");
+            }).catch(function(error){
+              console.log("Error creating item = "+item.name);
             })
         }
 
@@ -16,6 +18,8 @@ angular.module('item')
           var itemCreationPromise = itemService.updateItem(item);
           itemCreationPromise.then(function(result){
             $location.path("/items");
+          }).catch(function(error){
+            console.log("Error updating item = "+item.name);
           })
         }
 
@@ -24,6 +28,8 @@ angular.module('item')
           itemCreationPromise.then(function(result){
             $location.path("/items");
             $route.reload();
+          }).catch(function(error){
+            console.log("Error deleting item = "+item.name);
           })
         }
 
