@@ -1,41 +1,22 @@
 angular.module('item')
-    .controller('itemController', ['$scope', '$location', '$http', function($scope, $location, $http) {
+    .controller('itemController', ['$scope', '$location', '$http', 'itemService', function($scope, $location, $http, itemService) {
 
         $scope.closeItemDetail = function() {
             $location.path("/items");
         }
 
         $scope.createItem = function(item) {
-            var resourceURL = "http://localhost:8090/items";
-            var dataObject = {
-                name: item.name,
-                code: item.code
-            };
-
-            $http.post(resourceURL, dataObject);
-
+            itemService.createItem(item);
             $location.path("/items");
         }
 
         $scope.updateItem = function(item) {
-
-            var resourceURL = item._links.self.href;
-            var dataObject = {
-                name: item.name,
-                code: item.code
-            };
-
-            $http.put(resourceURL, dataObject);
-
+            itemService.updateItem(item);
             $location.path("/items");
         }
 
         $scope.deleteItem = function(item) {
-
-            var itemUrl = item._links.self.href;
-
-            $http.delete(itemUrl);
-
+            itemService.deleteItem(item);
             $location.path("/items");
         }
 
@@ -44,20 +25,13 @@ angular.module('item')
         }
 
         $scope.openEditForm = function(item) {
-            var itemUrlPath = getURLPath(item);
+            var itemUrlPath = itemService.getURLPath(item);
             $location.path(itemUrlPath + "/edit-item");
         }
 
         $scope.viewItem = function(item) {
-            var itemUrlPath = getURLPath(item);
+            var itemUrlPath = itemService.getURLPath(item);
             $location.path(itemUrlPath + "/view-item");
-        }
-
-        var getURLPath = function(item) {
-            var url = item._links.self.href;
-            var el = document.createElement('a');
-            el.href = url;
-            return el.pathname;
         }
 
     }]);
