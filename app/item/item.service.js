@@ -29,7 +29,7 @@ angular.module('item')
 
             updateItem: function(item) {
 
-                var resourceURL = this.getURLPath(item);
+                var resourceURL = this.getItemURL(item);
                 var dataObject = {
                     name: item.name,
                     code: item.code
@@ -40,16 +40,22 @@ angular.module('item')
 
             deleteItem: function(item) {
 
-                var itemUrl = this.getURLPath(item);
+                var itemUrl = this.getItemURL(item);
                 $http.delete(itemUrl);
             },
 
-            getURLPath: function(item) {
+            getItemURLPath: function(item) {
 
                 var url = item._links.self.href;
                 var el = document.createElement('a');
                 el.href = url;
                 return el.pathname;
+            },
+
+            getItemURL: function(item) {
+
+                var url = item._links.self.href;
+                return url;
             },
 
             getItemBaseURL: function() {

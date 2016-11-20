@@ -25,12 +25,12 @@ angular.module('item')
         }
 
         $scope.openEditForm = function(item) {
-            var itemUrlPath = itemService.getURLPath(item);
+            var itemUrlPath = itemService.getItemURLPath(item);
             $location.path(itemUrlPath + "/edit-item");
         }
 
         $scope.viewItem = function(item) {
-            var itemUrlPath = itemService.getURLPath(item);
+            var itemUrlPath = itemService.getItemURLPath(item);
             $location.path(itemUrlPath + "/view-item");
         }
 
