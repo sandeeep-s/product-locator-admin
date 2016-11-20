@@ -1,23 +1,30 @@
 angular.module('item')
-    .controller('itemController', ['$scope', '$location', '$http', 'itemService', function($scope, $location, $http, itemService) {
+    .controller('itemController', ['$scope', '$location', '$http', 'itemService', '$route', function($scope, $location, $http, itemService, $route) {
 
         $scope.closeItemDetail = function() {
             $location.path("/items");
         }
 
         $scope.createItem = function(item) {
-            itemService.createItem(item);
-            $location.path("/items");
+            var itemCreationPromise = itemService.createItem(item);
+            itemCreationPromise.then(function(result){
+              $location.path("/items");
+            })
         }
 
         $scope.updateItem = function(item) {
-            itemService.updateItem(item);
+          var itemCreationPromise = itemService.updateItem(item);
+          itemCreationPromise.then(function(result){
             $location.path("/items");
+          })
         }
 
         $scope.deleteItem = function(item) {
-            itemService.deleteItem(item);
+          var itemCreationPromise = itemService.deleteItem(item);
+          itemCreationPromise.then(function(result){
             $location.path("/items");
+            $route.reload();
+          })
         }
 
         $scope.openAddForm = function() {

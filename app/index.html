@@ -1,36 +1,20 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="productLocatorAdmin" class="no-js">
-<!--<![endif]-->
+<html ng-app="productLocatorAdmin">
 
 <head>
     <meta charset="utf-8">
     <base href="/">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Product Locator Admin</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app.css">
-    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
 
-    <div class="w3-container">
+    <div>
         <div ng-view></div>
     </div>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/lodash/lodash.js"></script>
-    <script src="bower_components/hy-res/dist/hy-res.js"></script>
-    <script src="bower_components/angular-hy-res/dist/angular-hy-res-full.js"></script>
     <script src="app.module.js"></script>
     <script src="app.controller.js"></script>
     <script src="app.config.js"></script>

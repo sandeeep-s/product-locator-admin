@@ -24,7 +24,9 @@ angular.module('item')
                     code: item.code
                 };
 
-                $http.post(resourceURL, dataObject);
+                return $http.post(resourceURL, dataObject).then(function(response) {
+                    return response.data;
+                });
             },
 
             updateItem: function(item) {
@@ -35,13 +37,17 @@ angular.module('item')
                     code: item.code
                 };
 
-                $http.put(resourceURL, dataObject);
+                return $http.put(resourceURL, dataObject).then(function(response) {
+                    return response.data;
+                });
             },
 
             deleteItem: function(item) {
 
                 var itemUrl = this.getItemURL(item);
-                $http.delete(itemUrl);
+                return $http.delete(itemUrl).then(function(response) {
+                    return response.data;
+                });
             },
 
             getItemURLPath: function(item) {
